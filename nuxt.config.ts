@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   // devtools: { enabled: true },
-  vite: {
-    base: '/web36NUXT/'
+  app: {
+    baseURL: '/web36NUXT/'
   },
   nitro: {
     plugins: ['plugins/extend-html.ts']
