@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   // devtools: { enabled: true },
   app: {
     baseURL: '/web36NUXT/',
+    // pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
