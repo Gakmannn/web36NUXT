@@ -5,12 +5,14 @@
     <NuxtLink to="/books">books</NuxtLink>
     <NuxtLink to="/lk">lk</NuxtLink>
     <NuxtLink to="/login">login</NuxtLink>
+    <NuxtLink to="/fetch">fetch</NuxtLink>
   </nav>
   <div>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
   </div>
+  
 </template>
 
 <style lang="scss">

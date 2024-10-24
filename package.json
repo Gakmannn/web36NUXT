@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.5",
+    "@prisma/nuxt": "^0.0.35",
     "md5": "^2.3.0",
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@prisma/client": "^5.21.1",
     "@types/md5": "^2.3.5",
     "sass": "^1.79.5"
   },

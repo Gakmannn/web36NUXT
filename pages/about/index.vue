@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h1>Hello from about Page</h1>
+      {{ appStore.dataPage  }}
+    <!-- <h1>Hello from about Page</h1>
     <div v-if="status === 'pending'">
       Loading ...
     </div>
-    <div v-else>
-      {{ page  }}
-    </div>
+    <div v-else> 
+      {{ appStore.dataPage  }}
+    <!-- </div> -->
   </div>
 </template>
 
@@ -16,6 +17,9 @@ definePageMeta({
   layoutTransition: false
 })
 
-const { data: page, error, status } = await useFetch('/time', { lazy: true })
+// const { data: page, error, status } = await useFetch('/time', { lazy: true })
+const appStore = useApp()
+appStore.downloadData()
+
 
 </script>
