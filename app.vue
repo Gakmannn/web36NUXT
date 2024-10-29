@@ -1,4 +1,6 @@
 <template>
+  <NuxtLoadingIndicator></NuxtLoadingIndicator>
+  <img src="/img/logo.jfif" alt="">
   <nav>
     <NuxtLink to="/">home</NuxtLink>
     <NuxtLink to="/about">about</NuxtLink>
@@ -12,7 +14,7 @@
       <NuxtPage />
     </NuxtLayout>
   </div>
-  
+
 </template>
 
 <style lang="scss">
