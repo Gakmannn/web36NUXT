@@ -1,6 +1,7 @@
 <template>
   <NuxtLoadingIndicator></NuxtLoadingIndicator>
-  <img src="/img/logo.jfif" alt="">
+  <!-- <img src="/img/logo.jfif" alt=""/> -->
+  <NuxtImg sizes="100vw sm:50vw md:400px" src="/img/zakat.jpg" :placeholder="[50, 25, 75, 5]" alt="" />
   <nav>
     <NuxtLink to="/">home</NuxtLink>
     <NuxtLink to="/about">about</NuxtLink>
@@ -10,9 +11,9 @@
     <NuxtLink to="/fetch">fetch</NuxtLink>
   </nav>
   <div>
-    <NuxtLayout>
+    <!-- <NuxtLayout> -->
       <NuxtPage />
-    </NuxtLayout>
+    <!-- </NuxtLayout> -->
   </div>
 
 </template>

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
 
-  // devtools: { enabled: true },
+  devtools: { enabled: false },
   app: {
     baseURL: '/web36NUXT/',
     // pageTransition: { name: 'page', mode: 'out-in' },
@@ -23,5 +23,17 @@ export default defineNuxtConfig({
     plugins: ['plugins/extend-html.ts']
   },
 
-  modules: ['@pinia/nuxt', '@prisma/nuxt']
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => ['swiper-container', 'swiper-slide'].includes(tag),
+    },
+  },
+
+  vite: {
+    css: {
+      
+    }
+  },
+
+  modules: ['@pinia/nuxt', '@prisma/nuxt', '@nuxt/image']
 })

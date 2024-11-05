@@ -10,17 +10,19 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/image": "^1.8.1",
     "@pinia/nuxt": "^0.5.5",
     "@prisma/nuxt": "^0.0.35",
     "md5": "^2.3.0",
     "nuxt": "^3.13.0",
+    "swiper": "^11.1.14",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
-    "@prisma/client": "^5.21.1",
+    "@prisma/client": "^5.22.0",
     "@types/md5": "^2.3.5",
-    "sass": "^1.79.5"
+    "sass-embedded": "^1.80.6"
   },
   "overrides": {
     "vue": "latest"

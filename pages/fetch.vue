@@ -1,5 +1,5 @@
 <template>
   <SubstrateComponent>
-    <TableComponent></TableComponent>
+    <TableComponent/>
   </SubstrateComponent>
 </template>
