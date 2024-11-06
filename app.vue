@@ -12,7 +12,7 @@
   </nav>
   <div>
     <!-- <NuxtLayout> -->
-      <NuxtPage />
+    <NuxtPage />
     <!-- </NuxtLayout> -->
   </div>
 

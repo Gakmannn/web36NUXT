@@ -9,27 +9,26 @@
     <form method="post" @submit.prevent="addAuthor">
       <input type="text" v-model="name" placeholder="name">
       <input type="text" v-model="email" placeholder="email">
-      <input type="submit" velue="save">
+      <input type="submit" value="save">
     </form>
 
   </div>
 </template>
 
 <script setup lang="ts">
-const {data:users} = useFetch('/api/users')
+import type { User } from '@prisma/client';
+
+const { data: users } = useFetch<User[]>('/api/users')
 const name = ref('')
 const email = ref('')
 
 async function addAuthor () {
-  const data = await $fetch('/api/add_user', {
+  const data = await $fetch<User>('/api/add_user', {
     method: 'POST',
-    // headers: {
-    //   'Content-Type': 'application/json;charset=utf-8'
-    // },
     body: {name:name.value, email:email.value}
   })
   if (data.id) {
-    users.value.push(data)
+    users.value?.push(data)
   } else {
     alert(data)
   }
