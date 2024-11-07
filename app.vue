@@ -9,6 +9,8 @@
     <NuxtLink to="/lk">lk</NuxtLink>
     <NuxtLink to="/login">login</NuxtLink>
     <NuxtLink to="/fetch">fetch</NuxtLink>
+    <NuxtLink to="/authors">Авторы</NuxtLink>
+    <NuxtLink to="/upload">Загрузка</NuxtLink>
   </nav>
   <div>
     <!-- <NuxtLayout> -->
