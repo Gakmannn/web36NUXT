@@ -6,3 +6,19 @@
 body {
   color: rgb(21, 53, 53);
 }
+
+swiper-container {
+  margin: 20px auto;
+  max-width: 600px;
+  height: 100px;
+  overflow: hidden;
+}
+swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px red solid;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}

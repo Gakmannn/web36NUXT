@@ -14,7 +14,10 @@
     "@pinia/nuxt": "^0.5.5",
     "@prisma/nuxt": "^0.0.35",
     "md5": "^2.3.0",
+    "multer": "^1.4.5-lts.1",
     "nuxt": "^3.13.0",
+    "sass-embedded-win32-x64": "^1.80.6",
+    "sharp": "^0.33.5",
     "swiper": "^11.1.14",
     "vue": "latest",
     "vue-router": "latest"
@@ -22,6 +25,7 @@
   "devDependencies": {
     "@prisma/client": "^5.22.0",
     "@types/md5": "^2.3.5",
+    "@types/multer": "^1.4.12",
     "sass-embedded": "^1.80.6"
   },
   "overrides": {

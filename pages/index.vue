@@ -1,8 +1,10 @@
 <template>
   <div>
 
-    <swiper-container slides-per-view="3" speed="500" loop="true" spaceBetween="10">
-      <swiper-slide v-for="i in 10" :key="i">Slide {{i}}</swiper-slide>
+    <swiper-container slides-per-view="1" speed="500" loop="true" spaceBetween="10">
+      <swiper-slide v-for="image, i of images" :key="i">
+        <NuxtImg fit="cover" width="200px" sizes="50vw sm:50vw md:50vw" :src="image" alt=""></NuxtImg>
+      </swiper-slide>
     </swiper-container>
 
     <img src="/favicon.ico" alt="favicon">
@@ -22,9 +24,14 @@
 </template>
 
 <script setup lang="ts">
-import { register } from 'swiper/element/bundle'
-// register Swiper custom elements
-register()
+
+
+const images = [
+  'img/logo.jfif',
+  'img/zakat.jpg',
+  'img/i.webp',
+]
+
 const appStore = useApp()
 await appStore.downloadData()
 // throw createError({ message: 'Fin' })
@@ -38,18 +45,10 @@ await appStore.downloadData()
 
 </script>
 <style>
-swiper-container {
-  margin: 20px auto;
-  max-width: 600px;
-  height: 100px;
-}
-swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px red solid;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
+
+/* swiper-slide img {
+  object-fit: contain;
+  object-position: center;
+} */
 
 </style>
