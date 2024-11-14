@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <swiper-container slides-per-view="1" speed="500" loop="true" spaceBetween="10">
-      <swiper-slide v-for="image, i of images" :key="i">
+    <swiper-container init="false">
+      <swiper-slide class="hidden" v-for="image, i of images" :key="i">
         <NuxtImg fit="cover" width="200px" sizes="50vw sm:50vw md:50vw" :src="image" alt=""></NuxtImg>
       </swiper-slide>
     </swiper-container>
@@ -24,7 +24,32 @@
 </template>
 
 <script setup lang="ts">
+import { register } from 'swiper/element/bundle'
+register()
 
+onMounted(()=>{
+  const swiperEl = document.querySelector('swiper-container') as any
+  
+  // swiper parameters
+  const swiperParams = {
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween: 10,
+    navigation: true, 
+    pagination: true,
+    on: {
+      init() {
+        const slideElements = swiperEl.querySelectorAll('swiper-slide')
+        for (let el of slideElements) {
+          el.classList.remove('hidden')
+        }
+      },
+    },
+  }
+  
+  Object.assign(swiperEl, swiperParams)
+  swiperEl.initialize()
+})
 
 const images = [
   'img/logo.jfif',

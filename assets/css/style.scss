@@ -11,8 +11,8 @@ swiper-container {
   margin: 20px auto;
   max-width: 600px;
   height: 100px;
-  overflow: hidden;
 }
+
 swiper-slide {
   display: flex;
   align-items: center;
@@ -21,4 +21,8 @@ swiper-slide {
   border-radius: 10px;
   box-sizing: border-box;
   overflow: hidden;
+}
+
+.hidden {
+  display: none;
 }
