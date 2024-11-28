@@ -1,11 +1,20 @@
 <template>
   <div>
+    <ClientOnly>
+      <swiper-container ref="containerRef" :init="false">
+        <swiper-slide v-for="image, i of images" :key="i">
+          <NuxtImg fit="cover" height="200" width="400" :src="image" alt=""></NuxtImg>
+        </swiper-slide>
+      </swiper-container>
+    </ClientOnly>
 
-    <swiper-container init="false">
-      <swiper-slide class="hidden" v-for="image, i of images" :key="i">
-        <NuxtImg fit="cover" width="200px" sizes="50vw sm:50vw md:50vw" :src="image" alt=""></NuxtImg>
-      </swiper-slide>
-    </swiper-container>
+
+    <!-- <swiper-container slidesPerView="1" loop="true" spaceBetween="10" navigation="true" ,
+    pagination="true">
+    <swiper-slide v-for="image, i of images" :key="i">
+      <NuxtImg fit="cover" width="200px" sizes="50vw sm:50vw md:50vw" :src="image" alt=""></NuxtImg>
+    </swiper-slide>
+    </swiper-container> -->
 
     <img src="/favicon.ico" alt="favicon">
     <h1>Hello from index Page</h1>
@@ -24,32 +33,57 @@
 </template>
 
 <script setup lang="ts">
-import { register } from 'swiper/element/bundle'
-register()
 
-onMounted(()=>{
-  const swiperEl = document.querySelector('swiper-container') as any
-  
-  // swiper parameters
-  const swiperParams = {
-    slidesPerView: 1,
-    loop: true,
-    spaceBetween: 10,
-    navigation: true, 
-    pagination: true,
-    on: {
-      init() {
-        const slideElements = swiperEl.querySelectorAll('swiper-slide')
-        for (let el of slideElements) {
-          el.classList.remove('hidden')
-        }
-      },
+const containerRef = ref(null)
+
+const swiper = useSwiper(containerRef, {
+  effect: 'creative',
+  loop: true,
+  autoplay: {
+    delay: 5000,
+  },
+  creativeEffect: {
+    prev: {
+      shadow: true,
+      translate: [0, 0, -400],
     },
-  }
-  
-  Object.assign(swiperEl, swiperParams)
-  swiperEl.initialize()
+    next: {
+      shadow: true,
+      translate: [0, 0, -400],
+    },
+  },
 })
+
+onMounted(() => {
+  console.log(swiper.instance)
+})
+
+// import { register } from 'swiper/element/bundle'
+// register()
+
+// onMounted(()=>{
+//   const swiperEl = document.querySelector('swiper-container') as any
+  
+//   // swiper parameters
+//   const swiperParams = {
+//     slidesPerView: 1,
+//     loop: true,
+//     spaceBetween: 10,
+//     navigation: true, 
+//     pagination: true,
+//     on: {
+//       init() {
+//         const slideElements = swiperEl.querySelectorAll('swiper-slide')
+//         for (let el of slideElements) {
+//           el.classList.remove('hidden')
+//         }
+//       },
+//     },
+//   }
+  
+//   Object.assign(swiperEl, swiperParams)
+//   swiperEl.initialize()
+// })
 
 const images = [
   'img/logo.jfif',
@@ -71,9 +105,9 @@ await appStore.downloadData()
 </script>
 <style>
 
-/* swiper-slide img {
+swiper-slide img {
   object-fit: contain;
   object-position: center;
-} */
+}
 
 </style>

@@ -1,6 +1,13 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+
+// Просмотр схемы
+// https://prisma-editor.vercel.app/
+
+// Методичка по prisma
+// https://my-js.org/docs/guide/prisma/
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,18 +17,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+model user {
+  id      Int       @id @default(autoincrement())
+  email   String    @unique
+  name    String?
+  posts   post[]
 }
 
-model Post {
+model post {
   id        Int     @id @default(autoincrement())
   title     String
-  content   String?
-  published Boolean @default(false)
-  authorId  Int
-  author    User    @relation(fields: [authorId], references: [id])
+  text      String
+  img       String 
+  datetime  DateTime
+  author_id Int
+  author    user    @relation(fields: [author_id], references: [id])
 }
