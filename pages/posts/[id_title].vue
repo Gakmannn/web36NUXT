@@ -1,10 +1,10 @@
 <template>
-  <div v-if="data" class="postPage">
-    <h1>{{ data.title }}</h1>
-    <strong>pub. date {{ new Date( data.datetime).toLocaleDateString() }} author: {{data.author.name}}</strong>
+  <div v-if="post" class="postPage">
+    <h1>{{ post.title }}</h1>
+    <strong>pub. date {{ new Date(post.datetime).toLocaleDateString() }} author: {{ post.author.name}}</strong>
     <br>
-    <NuxtImg :src="`img/${data.img}`" sizes="450px" class="postImg"/>
-    <p>{{ data.text }}</p>
+    <NuxtImg :src="`img/${post.img}`" sizes="450px" class="postImg"/>
+    <p>{{ post.text }}</p>
   </div>
   <div v-else>
     <h1>Not found 404</h1>
@@ -15,14 +15,21 @@
 <script setup lang="ts">
 import type { post } from '@prisma/client';
 
-const route = useRoute()
-
-const id = route.params.id_title.toString().split('_',1)[0]
-if (id && +id) {
-  const {data} = await useFetch<post>(`/api/posts/${id}`)
+interface postWithAuthor extends post {
+  author: {
+    name: string
+  }
 }
 
-// const post = data
+const route = useRoute()
+
+const post = ref(null as null | postWithAuthor)
+const id = route.params.id_title.toString().split('_',1)[0]
+if (id && +id) {
+  const { data } = await useFetch<postWithAuthor>(`/api/posts/${id}`)
+  post.value = data.value
+}
+
 // const postsStore = usePosts()
 // const post = postsStore.posts.find(el=>el.id==+id)
 // const author = ref(null as null|any)
