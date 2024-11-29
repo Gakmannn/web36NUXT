@@ -12,18 +12,21 @@ const dopinfo = ref('')
 const file = ref(null)
 const formElem = ref(null)
 const upload = async ()=>{
-  // const fileref = file.value as never as HTMLInputElement
-  // if (fileref.files) {
-  //   const fD = new FormData()
-  //   fD.append('file', fileref.files[0])
-  //   fD.append('dop', dopinfo.value)
+  const fileref = file.value as never as HTMLInputElement
+  const fD = new FormData()
+  if (fileref.files) {
+    fD.append('file', fileref.files[0])
+    fD.append('dop', dopinfo.value)
 
-  //   console.log(fileref.files[0])
-  // }
+    console.log(fileref.files[0])
+  }
+
   if (formElem.value) {
+    // console.log(new FormData(formElem.value))
     const data = await $fetch('/api/add_file', {
       method: 'POST',
-      body: new FormData(formElem.value)
+      // body: new FormData(formElem.value)
+      body: fD
     })
     console.log(data)
   }
