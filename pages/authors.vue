@@ -16,14 +16,14 @@
 </template>
 
 <script setup lang="ts">
-import type { User } from '@prisma/client';
+import type { user } from '@prisma/client';
 
-const { data: users } = useFetch<User[]>('/api/users')
+const { data: users } = useFetch<user[]>('/api/users')
 const name = ref('')
 const email = ref('')
 
 async function addAuthor () {
-  const data = await $fetch<User>('/api/add_user', {
+  const data = await $fetch<user>('/api/add_user', {
     method: 'POST',
     body: {name:name.value, email:email.value}
   })

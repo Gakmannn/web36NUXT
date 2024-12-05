@@ -22,6 +22,10 @@
 </template>
 
 <script setup lang="ts">
+const userStore = useUser()
+onMounted(()=>{
+  userStore.autoLogin()
+})
 </script>
 
 <style lang="scss">

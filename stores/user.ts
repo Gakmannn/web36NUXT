@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-type User = {
-  login: string,
-  image: string,
+interface User {
+  name: string | null;
+  id: number;
+  email: string;
 }
 
 const users = [
@@ -14,12 +15,17 @@ export const useUser = defineStore('user', () => {
   const user = ref(undefined as undefined | User)
   const logOut = () => {
     user.value = undefined
-    location.assign('/')
+    delete localStorage.user
+    navigateTo('/login')
   }
-  const logIn = (login: string, pass: string) => {
-    const tempUser = users.find((el) => el.login == login)
-    if (tempUser && tempUser.pass == pass) {
-      user.value = { login, image: tempUser.image }
+  const logIn = async (email: string, pass: string) => {
+    console.log(email, pass)
+    user.value = await $fetch<User |undefined>('/api/login', {
+      method: 'POST',
+      body: { email, pass }
+    })
+    console.log(user.value)
+    if (user.value) {
       localStorage.user = JSON.stringify(user.value)
       return ''
     } else {
@@ -29,7 +35,7 @@ export const useUser = defineStore('user', () => {
   const autoLogin = () => {
     if (localStorage.user) {
       const tempUser = JSON.parse(localStorage.user)
-      user.value = users.find((el) => el.login == tempUser.login)
+      user.value = tempUser
     }
   }
   return { user, logIn, logOut, autoLogin }

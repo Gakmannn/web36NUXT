@@ -50,7 +50,7 @@ export default defineNuxtConfig({
   prisma: {
     installCLI: false,
     installClient: false,
-    generateClient: false,
+    generateClient: true,
     installStudio: false,
     autoSetupPrisma: true
   },

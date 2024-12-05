@@ -3,7 +3,10 @@ import path from 'path'
 import sharp from 'sharp'
 
 export default defineEventHandler(async (event) => {
-  await useFiles(event)
+  if (event.method === 'POST') {
+    const contentType = getRequestHeader(event, "content-type")
+    if (contentType?.includes('multipart/form-data;')) await useFiles(event)
+  }
 })
 
 const useFiles = async (event: any) => {
@@ -15,9 +18,9 @@ const useFiles = async (event: any) => {
       const busboy = Busboy({ headers: req.headers })
       busboy.on('file', (name, file, info) => {
         const { filename, encoding, mimeType } = info
-        const newFileName = Date.now() + info.filename
+        const newFileName = Date.now() + info.filename + '.webp'
         console.log(`File [${name}]: filename: ${filename}, encoding: ${encoding}, mimeType: ${mimeType}`)
-        const saveTo = path.join(process.cwd(), 'public/img', `${newFileName}.webp`)
+        const saveTo = path.join(process.cwd(), 'public/img', `${newFileName}`)
         // console.log('saveTo', saveTo)
         // file.pipe(fs.createWriteStream(saveTo))
         

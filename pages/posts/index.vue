@@ -1,7 +1,7 @@
 <template>
 <h1>Блог mysite.com</h1>
 <strong>Весь мир IT в одном месте</strong>
-<p v-if="!data.length">Постов пока нет</p>
+<p v-if="!data?.length">Постов пока нет</p>
 <div v-else class="grid">
   <div class="post" v-for="post of data" :key="post.id">
     <NuxtImg :src="`img/${post.img}`" sizes="300px"/>

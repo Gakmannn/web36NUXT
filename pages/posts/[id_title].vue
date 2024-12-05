@@ -13,12 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import type { post } from '@prisma/client';
+import type { post, user } from '@prisma/client';
 
 interface postWithAuthor extends post {
-  author: {
-    name: string
-  }
+  author: user
 }
 
 const route = useRoute()
