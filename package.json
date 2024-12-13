@@ -16,6 +16,7 @@
     "busboy": "^1.6.0",
     "md5": "^2.3.0",
     "nuxt": "^3.13.0",
+    "nuxt-directus": "^5.7.0",
     "nuxt-swiper": "^2.0.0",
     "sass-embedded-win32-x64": "^1.80.6",
     "sharp": "^0.33.5",

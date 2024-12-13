@@ -1,18 +1,19 @@
 <template>
 <h1>Блог mysite.com</h1>
 <strong>Весь мир IT в одном месте</strong>
-<p v-if="!data?.length">Постов пока нет</p>
+<p v-if="!posts?.length && ok">Постов пока нет</p>
+<p v-if="!ok">Что-то пошло не так. Мы уже работаем над проблемой</p>
 <div v-else class="grid">
-  <div class="post" v-for="post of data" :key="post.id">
+  <div class="post" v-for="post of posts" :key="post.id">
     <NuxtImg :src="`img/${post.img}`" sizes="300px"/>
     <h2><NuxtLink :to="`/posts/${post.id}_${post.title.toLowerCase().replaceAll(' ','_')}`">{{ post.title }}</NuxtLink></h2>
-    <p>{{ post.text }}</p>
+    <p>{{ post.html }}</p>
   </div>
 </div>
 </template>
 
 <script setup lang="ts">
-import type { post } from '@prisma/client';
+
 useSeoMeta({
   title: 'Мой невероятный сайт',
   ogTitle: 'Мой невероятный сайт',
@@ -22,7 +23,17 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const {data} = await useFetch<post[]>('/api/posts')
+const {data} = await useFetch('/api/posts')
+const posts = ref(data.value?.posts)
+const ok = ref(data.value?.ok)
+
+if (import.meta.client) {
+  console.log(document.querySelector('.grid'))
+}
+
+onMounted(()=>{
+
+})
 
 // const postsStore = usePosts()
 

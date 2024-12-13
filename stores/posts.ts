@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+// https://my-js.org/docs/guide/prisma/
+// https://prisma-editor.vercel.app/schema/11391
+
 export const usePosts = defineStore('posts', () => {
   const authors = [
     { id: 1, name: 'DFHjklklkkl' }

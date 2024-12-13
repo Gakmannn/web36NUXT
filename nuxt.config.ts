@@ -49,13 +49,13 @@ export default defineNuxtConfig({
 
   prisma: {
     installCLI: false,
-    installClient: false,
+    installClient: true,
     generateClient: true,
     installStudio: false,
     autoSetupPrisma: true
   },
 
-  modules: ['@pinia/nuxt', '@prisma/nuxt', '@nuxt/image', 'nuxt-swiper'],
+  modules: ['@pinia/nuxt', '@prisma/nuxt', '@nuxt/image', 'nuxt-swiper', 'nuxt-directus'],
 
   // swiper: {
   //   styleLang: 'css',

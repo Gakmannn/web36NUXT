@@ -21,7 +21,7 @@
           <NuxtLink :to="`/posts/${post.id}_${post.title.toLowerCase().replaceAll(' ', '_')}`">{{ post.title }}
           </NuxtLink>
         </h2>
-        <p>{{ post.text }}</p>
+        <p>{{ post.html }}</p>
         <button @click="deletePost(post.id)">delete</button>
       </div>
     </div>
@@ -31,10 +31,10 @@
 </template>
 
 <script setup lang="ts">
-import type { post, user } from '@prisma/client';
+import type { Post, User } from '@prisma/client';
 
-interface postWithAuthor extends post {
-  author: user
+interface postWithAuthor extends Post {
+  author: User
 }
 
 const userStore = useUser()
@@ -62,9 +62,8 @@ const upload = async () => {
   const fD = new FormData()
   if (fileref.files) {
     fD.append('title', title.value)
-    fD.append('text', text.value)
+    fD.append('html', text.value)
     fD.append('img', fileref.files[0])
-    fD.append('datetime', new Date().toISOString())
     fD.append('author_id', userStore.user?.id ? userStore.user?.id.toString() : '')
     await $fetch('/api/posts', {
       method: 'POST',

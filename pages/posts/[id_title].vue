@@ -1,10 +1,10 @@
 <template>
   <div v-if="post" class="postPage">
     <h1>{{ post.title }}</h1>
-    <strong>pub. date {{ new Date(post.datetime).toLocaleDateString() }} author: {{ post.author.name}}</strong>
+    <strong>pub. date {{ new Date(post.updated_at).toLocaleDateString() }} author: {{ post.author.name}}</strong>
     <br>
     <NuxtImg :src="`img/${post.img}`" sizes="450px" class="postImg"/>
-    <p>{{ post.text }}</p>
+    <p>{{ post.html }}</p>
   </div>
   <div v-else>
     <h1>Not found 404</h1>
@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import type { post, user } from '@prisma/client';
+import type { Post, User } from '@prisma/client';
 
-interface postWithAuthor extends post {
-  author: user
+interface postWithAuthor extends Post {
+  author: User
 }
 
 const route = useRoute()
