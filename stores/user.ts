@@ -5,6 +5,13 @@ interface User {
   name: string | null;
   id: number;
   email: string;
+  token: string
+}
+
+interface regData {
+  ok: boolean;
+  user: User;
+  massage: string;
 }
 
 const users = [
@@ -26,17 +33,39 @@ export const useUser = defineStore('user', () => {
     })
     console.log(user.value)
     if (user.value) {
-      localStorage.user = JSON.stringify(user.value)
+      const userToLocal = {...user.value}
+      // @ts-ignore
+      delete userToLocal.post
+      localStorage.user = JSON.stringify(userToLocal)
       return ''
     } else {
       return 'Проверьте логин либо пароль'
     }
   }
-  const autoLogin = () => {
+  const autoLogin = async () => {
     if (localStorage.user) {
       const tempUser = JSON.parse(localStorage.user)
-      user.value = tempUser
+      const data = await $fetch<regData>('/api/autologin', {
+        method: 'POST',
+        body: { ...tempUser }
+      })
+      if (data.ok) {
+        user.value = data.user
+      }
     }
   }
-  return { user, logIn, logOut, autoLogin }
+  const regIn = async (email: string, pass: string) => {
+    const data = await $fetch<regData>('/api/regin', {
+      method: 'POST',
+      body: { email, pass }
+    })
+    if (data.ok) {
+      user.value = data.user
+      localStorage.user = JSON.stringify(data.user)
+      return ''
+    } else {
+      return data?.massage
+    }
+  }
+  return { user, logIn, logOut, autoLogin, regIn }
 })

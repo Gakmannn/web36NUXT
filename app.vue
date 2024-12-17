@@ -23,9 +23,10 @@
 
 <script setup lang="ts">
 const userStore = useUser()
-onMounted(()=>{
+if (import.meta.client) {
   userStore.autoLogin()
-})
+}
+
 </script>
 
 <style lang="scss">

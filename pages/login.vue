@@ -7,7 +7,8 @@
         <input type="password" placeholder="pass" v-model="pass">
         {{ md5(pass) }}
         <p v-if="error">{{ error }}</p>
-        <input type="submit" value="Login">
+        <input type="submit" @click="type='login'" value="Login">
+        <input type="submit" @click="type='reg'" value="Register">
       </form>
     </div>
     <div v-else
@@ -25,13 +26,18 @@ const userStore = useUser()
 const email = ref('')
 const pass = ref('')
 const error = ref('')
+const type = ref('')
 
 const logIn = async () => {
   if (email.value && pass.value) {
-    error.value = await userStore.logIn(email.value, md5(pass.value))
-  } else {
-    error.value = 'Не введён логин либо пароль'
-  }
+      if (type.value == 'login') {
+        error.value = await userStore.logIn(email.value, md5(pass.value))
+      } else {
+        error.value = await userStore.regIn(email.value, md5(pass.value))
+      }
+    } else {
+      error.value = 'Не введён логин либо пароль'
+    }
 }
 
 </script>

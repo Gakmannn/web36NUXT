@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 model Post {
@@ -27,6 +27,7 @@ model User {
   name  String? 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  token  String @unique @default(uuid())
   post  Post[]
   settings UserSettings?
   
