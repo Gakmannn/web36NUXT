@@ -1,4 +1,5 @@
 import prisma from "~/lib/prisma"
+import { confirm } from "~/lib/nodemailer"
 
 export default defineEventHandler(async (event) => {
     const data = await readBody(event)
@@ -23,6 +24,7 @@ export default defineEventHandler(async (event) => {
           token:true
         }
       })
+      await confirm(data.email, '42345234')
       return {ok:true, user, massage:''}
     } else {
       return {
