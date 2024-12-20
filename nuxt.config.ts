@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import sharp from "sharp"
+import path from 'path'
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
 
@@ -28,6 +31,12 @@ export default defineNuxtConfig({
       isCustomElement: (tag) => ['swiper-container', 'swiper-slide'].includes(tag),
     },
   },
+  
+  image: {
+    provider: "ipx",
+    sharp,
+    dir: path.join(process.cwd(), '../public')
+  },
 
   vite: {
     ssr: {
@@ -48,7 +57,7 @@ export default defineNuxtConfig({
   },
 
   prisma: {
-    installCLI: false,
+    installCLI: true,
     installClient: true,
     generateClient: true,
     installStudio: false,
