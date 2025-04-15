@@ -1,3 +1,13 @@
+в Windows
+ssh-keygen -t rsa 
+надо скопировать ключ из файла USER/.ssh/id_rsa.pub 
+  
+в linux
+mkdir .ssh
+vi .ssh/authorized_keys  
+Вставить скопированный ключ
+ввести "ESC :wq Enter" 
+
   462  apt update
   463  apt upgrade
   475  python3 --version
