@@ -7,8 +7,7 @@
         </swiper-slide>
       </swiper-container>
     </ClientOnly>
-
-
+  
     <!-- <swiper-container slidesPerView="1" loop="true" spaceBetween="10" navigation="true" ,
     pagination="true">
     <swiper-slide v-for="image, i of images" :key="i">
