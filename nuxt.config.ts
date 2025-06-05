@@ -32,15 +32,15 @@ export default defineNuxtConfig({
     },
   },
   
-  image: {
-    provider: "ipx",
-    sharp,
-    dir: path.join(process.cwd(), '../public')
-  },
+  // image: {
+  //   provider: "ipx",
+  //   sharp,
+  //   dir: path.join(process.cwd(), '../public')
+  // },
 
   vite: {
     ssr: {
-      external: ["@prisma/client"]
+      external: ["@prisma/client", "Busboy"]
     },
     resolve: {
       alias: {
@@ -56,6 +56,21 @@ export default defineNuxtConfig({
     }
   },
 
+  sitemap: {
+    defaults: {
+      changefreq: 'weekly'
+    },
+    sources: [
+      '/api/urls'
+    ],
+    // urls: async () => {
+    //   const resp = await fetch('http://localhost:3000/api/urls')
+    //   const urls = await resp.json() 
+    //   return urls
+    // },
+    xsl: false
+  },
+
   prisma: {
     installCLI: true,
     installClient: true,
@@ -64,7 +79,15 @@ export default defineNuxtConfig({
     autoSetupPrisma: true
   },
 
-  modules: ['@pinia/nuxt', '@prisma/nuxt', '@nuxt/image', 'nuxt-swiper', 'nuxt-directus'],
+  modules: [
+    '@pinia/nuxt',
+    '@prisma/nuxt',
+    '@nuxt/image',
+    'nuxt-swiper',
+    'nuxt-directus',
+    '@nuxtjs/seo',
+    'nuxt-og-image'
+  ],
 
   // swiper: {
   //   styleLang: 'css',

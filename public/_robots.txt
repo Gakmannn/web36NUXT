@@ -1,0 +1,8 @@
+Host: https://adres.sayta
+Sitemap: https://adres.sayta/sitemap.xml
+
+User-agent: *
+Disallow: /lk*
+
+User-agent: Yandex
+Disallow: /lk*

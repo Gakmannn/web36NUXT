@@ -16,7 +16,7 @@ const useFiles = async (event: any) => {
       const files = [] as any
       const fields = {} as any
       const busboy = Busboy({ headers: req.headers })
-      busboy.on('file', (name, file, info) => {
+      busboy.on('file', (name:string, file:any, info:any) => {
         const { filename, encoding, mimeType } = info
         const newFileName = Date.now() + info.filename + '.webp'
         console.log(`File [${name}]: filename: ${filename}, encoding: ${encoding}, mimeType: ${mimeType}`)
@@ -28,7 +28,7 @@ const useFiles = async (event: any) => {
         const data = [] as any
         let fileAsBuffer
 
-        file.on('data', (chunk) => {
+        file.on('data', (chunk:any) => {
           data.push(chunk)
         })
         .on('close', async () => {
@@ -49,7 +49,7 @@ const useFiles = async (event: any) => {
           })
         })
       })
-      busboy.on('field', (name, value, info) => {
+      busboy.on('field', (name:string, value:any, info:any) => {
         fields[name] = value
       })
       busboy.on('finish', () => {

@@ -6,8 +6,8 @@ export const useApp = defineStore('app', () => {
   const dataPage = ref('')
   const downloadData = async () => {
     if (!dataPage.value) {
-      const {data} = await useFetch('http://localhost:3000/web36NUXT/time')
-      dataPage.value = data.value as string
+      // const {data} = await useFetch('http://localhost:3000/web36NUXT/time')
+      // dataPage.value = data.value as string
     }
   }
   return { data, dataPage, downloadData }
